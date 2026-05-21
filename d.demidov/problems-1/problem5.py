@@ -41,6 +41,20 @@ class TestPrimeDivisors(unittest.TestCase):
         expected: list[list[int]] = []
         self.assertEqual(result, expected)
 
+    def test_divisors_correspondence(self) -> None:
+        numbers: list[int] = [
+            12341234123412341234,
+            123412341234123412341234123412341234123412341234123412341234,
+            1234123412341234123412341234123412341234123412341234123412341234
+        ]
+
+        for number in numbers:
+            divisors_and_powers: list[list[int]] = prime_divisors(number)
+            expected: int = 1
+            for divisor, power in divisors_and_powers:
+                expected *= divisor ** power
+            self.assertEqual(number, expected)
+
 
 if __name__ == "__main__":
     unittest.main()
